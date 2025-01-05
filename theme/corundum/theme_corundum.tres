@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c60bwmpavdiif"]
+
+[ext_resource type="StyleBox" uid="uid://bya6dwjxllv0x" path="res://theme/corundum/stylebox_panel_basic.tres" id="1_ky3yh"]
+[ext_resource type="StyleBox" uid="uid://bjnlre0sti1ic" path="res://theme/corundum/stylebox_label_section.tres" id="1_pd38l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndd72"]
+bg_color = Color(0.185832, 0.158169, 0.15817, 1)
+
+[resource]
+BackgroundPanel/base_type = &"Panel"
+BackgroundPanel/styles/panel = SubResource("StyleBoxFlat_ndd72")
+Label/colors/font_color = Color(0.901676, 0.898431, 0.89843, 1)
+MarginContainer/constants/margin_bottom = 6
+MarginContainer/constants/margin_left = 6
+MarginContainer/constants/margin_right = 6
+MarginContainer/constants/margin_top = 6
+Panel/styles/panel = ExtResource("1_ky3yh")
+SectionLabel/base_type = &"Label"
+SectionLabel/styles/normal = ExtResource("1_pd38l")
+TabContainer/constants/side_margin = 8
+TabContainer/styles/panel = ExtResource("1_ky3yh")

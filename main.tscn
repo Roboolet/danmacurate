@@ -1,0 +1,157 @@
+[gd_scene load_steps=5 format=3 uid="uid://bub4pq4by8b8r"]
+
+[ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_crg8f"]
+[ext_resource type="Script" path="res://slider_value_label.gd" id="2_le470"]
+
+[sub_resource type="Environment" id="Environment_orq0e"]
+background_mode = 1
+
+[sub_resource type="World3D" id="World3D_gwh5h"]
+fallback_environment = SubResource("Environment_orq0e")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_crg8f")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_crg8f")
+theme_type_variation = &"BackgroundPanel"
+
+[node name="Margin" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_crg8f")
+
+[node name="TabContainer" type="TabContainer" parent="Background/Margin"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Patterns" type="Panel" parent="Background/Margin/TabContainer"]
+layout_mode = 2
+theme = ExtResource("1_crg8f")
+metadata/_tab_index = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Background/Margin/TabContainer/Patterns"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/margin_right = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Preview
+"
+horizontal_alignment = 1
+
+[node name="Settings" type="BoxContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings/HBoxContainer"]
+layout_mode = 2
+text = "Speed"
+
+[node name="HSlider" type="HSlider" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+min_value = 0.5
+max_value = 2.0
+step = 0.5
+value = 1.0
+
+[node name="Multiplier" type="Label" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "1x"
+script = ExtResource("2_le470")
+
+[node name="LoopCheck" type="CheckButton" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings"]
+layout_mode = 2
+text = "Loop"
+
+[node name="ResetCheck" type="CheckButton" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings"]
+layout_mode = 2
+button_pressed = true
+text = "Reset on edit"
+
+[node name="PatternPreview" type="SubViewportContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_crg8f")
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/PatternPreview"]
+disable_3d = true
+world_3d = SubResource("World3D_gwh5h")
+handle_input_locally = false
+size = Vector2i(392, 601)
+render_target_update_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 3
+
+[node name="SplitContainer" type="SplitContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer2/SplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer2/SplitContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer2/SplitContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Patterns"
+horizontal_alignment = 1
+
+[node name="PatternList" type="ItemList" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer2/SplitContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+max_text_lines = 2
+auto_height = true
+
+[node name="State Machine" type="Panel" parent="Background/Margin/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Docs" type="Panel" parent="Background/Margin/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[connection signal="value_changed" from="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/TabContainer/Patterns/HSplitContainer/MarginContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]
