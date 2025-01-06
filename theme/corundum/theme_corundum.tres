@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c60bwmpavdiif"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://c60bwmpavdiif"]
 
 [ext_resource type="StyleBox" uid="uid://bya6dwjxllv0x" path="res://theme/corundum/stylebox_panel_basic.tres" id="1_ky3yh"]
 [ext_resource type="StyleBox" uid="uid://bjnlre0sti1ic" path="res://theme/corundum/stylebox_label_section.tres" id="1_pd38l"]
@@ -6,16 +6,56 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndd72"]
 bg_color = Color(0.185832, 0.158169, 0.15817, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_8tfj7"]
+color = Color(0.101961, 0.0745098, 0.0509804, 0.513726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwuki"]
+bg_color = Color(0.237705, 0.18517, 0.160351, 1)
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+shadow_color = Color(0, 0, 0, 0.341176)
+shadow_size = 3
+
 [resource]
 BackgroundPanel/base_type = &"Panel"
 BackgroundPanel/styles/panel = SubResource("StyleBoxFlat_ndd72")
+Button/colors/font_color = Color(0.582414, 0.473664, 0.388984, 1)
+Button/colors/font_focus_color = Color(0.980392, 0.858824, 0.796078, 1)
+Button/colors/font_hover_color = Color(0.988636, 0.918873, 0.883184, 1)
+Button/colors/font_hover_pressed_color = Color(0.988235, 0.917647, 0.882353, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_focus_color = Color(0.980392, 0.858824, 0.796078, 1)
+Button/colors/icon_hover_color = Color(0.980392, 0.858824, 0.796078, 1)
+Button/colors/icon_hover_pressed_color = Color(0.980392, 0.858824, 0.796078, 1)
+Button/colors/icon_normal_color = Color(0.606796, 0.488707, 0.372857, 1)
+Button/colors/icon_pressed_color = Color(0.980392, 0.858824, 0.796078, 1)
+Button/font_sizes/font_size = 14
+CheckBox/font_sizes/font_size = 20
+FlowContainer/constants/h_separation = 12
+FlowContainer/constants/v_separation = 6
+HSeparator/styles/separator = SubResource("StyleBoxLine_8tfj7")
 Label/colors/font_color = Color(0.901676, 0.898431, 0.89843, 1)
+Label/font_sizes/font_size = 14
 MarginContainer/constants/margin_bottom = 6
 MarginContainer/constants/margin_left = 6
 MarginContainer/constants/margin_right = 6
 MarginContainer/constants/margin_top = 6
+OptionButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+OptionButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+OptionButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+OptionButton/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+OptionButton/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_outline_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_pressed_color = Color(1, 1, 1, 1)
 Panel/styles/panel = ExtResource("1_ky3yh")
+PanelContainer/styles/panel = ExtResource("1_ky3yh")
+PropGroupPanelContainer/base_type = &"PanelContainer"
+PropGroupPanelContainer/styles/panel = SubResource("StyleBoxFlat_nwuki")
 SectionLabel/base_type = &"Label"
+SectionLabel/colors/font_color = Color(1, 1, 1, 1)
+SectionLabel/colors/font_shadow_color = Color(0, 0, 0, 1)
+SectionLabel/constants/shadow_outline_size = 1
+SectionLabel/font_sizes/font_size = 16
 SectionLabel/styles/normal = ExtResource("1_pd38l")
 TabContainer/constants/side_margin = 8
 TabContainer/styles/panel = ExtResource("1_ky3yh")
