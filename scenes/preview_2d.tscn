@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://khrdvrunqjgo"]
+[gd_scene load_steps=6 format=3 uid="uid://khrdvrunqjgo"]
+
+[ext_resource type="Script" path="res://scripts/preview_player.gd" id="1_dxb64"]
 
 [sub_resource type="Gradient" id="Gradient_yqlm4"]
 offsets = PackedFloat32Array(0, 0.214286, 0.266234, 0.857143)
@@ -32,3 +34,4 @@ texture = SubResource("GradientTexture2D_xygk3")
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(0, 150)
 texture = SubResource("GradientTexture2D_xrnsu")
+script = ExtResource("1_dxb64")
