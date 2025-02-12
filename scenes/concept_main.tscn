@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_fbpy7"]
 [ext_resource type="Script" path="res://slider_value_label.gd" id="2_tfkc5"]
-[ext_resource type="PackedScene" uid="uid://khrdvrunqjgo" path="res://scenes/preview_2d.tscn" id="3_4hx61"]
+[ext_resource type="PackedScene" uid="uid://khrdvrunqjgo" path="res://scenes/concept_main_sim.tscn" id="3_4hx61"]
 [ext_resource type="Script" path="res://scripts/prop_group_settings_dropdown.gd" id="3_ing78"]
 
 [node name="Control" type="Control"]

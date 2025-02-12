@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://khrdvrunqjgo"]
 
-[ext_resource type="Script" path="res://scripts/preview_player.gd" id="1_dxb64"]
+[ext_resource type="Script" path="res://scripts/preview_player.gd" id="1_p3iol"]
 
 [sub_resource type="Gradient" id="Gradient_yqlm4"]
 offsets = PackedFloat32Array(0, 0.214286, 0.266234, 0.857143)
@@ -13,7 +13,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_jcmvy"]
-offsets = PackedFloat32Array(0, 0.480519, 0.493506)
+offsets = PackedFloat32Array(0, 0.266234, 0.480519)
 colors = PackedColorArray(1, 1, 1, 0.243137, 1, 1, 1, 1, 0.67069, 0.67069, 0.67069, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xrnsu"]
@@ -34,4 +34,4 @@ texture = SubResource("GradientTexture2D_xygk3")
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(0, 150)
 texture = SubResource("GradientTexture2D_xrnsu")
-script = ExtResource("1_dxb64")
+script = ExtResource("1_p3iol")
