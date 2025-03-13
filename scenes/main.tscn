@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_v6upr"]
-[ext_resource type="Script" path="res://slider_value_label.gd" id="2_ql472"]
-[ext_resource type="PackedScene" uid="uid://khrdvrunqjgo" path="res://scenes/concept_main_sim.tscn" id="3_prv64"]
+[ext_resource type="Script" path="res://scripts/slider_value_label.gd" id="2_ql472"]
+[ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://scenes/main_sim.tscn" id="3_w7uqp"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -107,6 +107,7 @@ text = "Preview
 horizontal_alignment = 1
 
 [node name="Settings" type="BoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
@@ -145,11 +146,10 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(619, 600)
+size = Vector2i(619, 632)
 render_target_update_mode = 4
 
-[node name="preview_2d" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_prv64")]
-position = Vector2(12, 104)
+[node name="MainSim" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_w7uqp")]
 
 [node name="SettingsContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -170,7 +170,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"SectionLabel"
-text = "Properties"
+text = "Layer Properties"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
@@ -188,21 +188,6 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-custom_minimum_size = Vector2(83, 0)
-layout_mode = 2
-selected = 0
-item_count = 1
-popup/item_0/text = "Default"
-
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-text = "Bullet Type"
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -218,10 +203,27 @@ layout_mode = 2
 text = "Lifetime
 "
 
+[node name="HBoxContainer8" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(83, 0)
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "Default"
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "Bullet Type"
+
 [node name="HSeparator2" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
@@ -234,6 +236,7 @@ layout_mode = 2
 text = "X Offset"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
@@ -247,36 +250,6 @@ text = "Y Offset"
 
 [node name="HSeparator" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
-custom_minimum_size = Vector2(83, 0)
-layout_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "Static"
-popup/item_1/text = "To Target"
-popup/item_1/id = 1
-popup/item_2/text = "To Self"
-popup/item_2/id = 2
-
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
-layout_mode = 2
-text = "Targeting"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-min_value = -360.0
-max_value = 360.0
-
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Angle Offset"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
 layout_mode = 2

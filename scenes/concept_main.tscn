@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bub4pq4by8b8r"]
 
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_fbpy7"]
-[ext_resource type="Script" path="res://slider_value_label.gd" id="2_tfkc5"]
+[ext_resource type="Script" path="res://scripts/slider_value_label.gd" id="2_tfkc5"]
 [ext_resource type="PackedScene" uid="uid://khrdvrunqjgo" path="res://scenes/concept_main_sim.tscn" id="3_4hx61"]
-[ext_resource type="Script" path="res://scripts/prop_group_settings_dropdown.gd" id="3_ing78"]
+[ext_resource type="Script" path="res://scripts/legacy/prop_group_settings_dropdown.gd" id="3_ing78"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -116,7 +116,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(369, 604)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="preview_2d" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_4hx61")]
