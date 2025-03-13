@@ -1,0 +1,303 @@
+[gd_scene load_steps=4 format=3 uid="uid://bui6em53w2wx2"]
+
+[ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_v6upr"]
+[ext_resource type="Script" path="res://slider_value_label.gd" id="2_ql472"]
+[ext_resource type="PackedScene" uid="uid://khrdvrunqjgo" path="res://scenes/concept_main_sim.tscn" id="3_prv64"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_v6upr")
+theme_type_variation = &"BackgroundPanel"
+
+[node name="Margin" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_v6upr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="Background/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+flat = true
+
+[node name="File" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+title = "File"
+position = Vector2i(590, 310)
+system_menu_id = 2
+item_count = 4
+item_0/text = "New"
+item_1/text = "Save"
+item_1/id = 1
+item_2/text = "Save as..."
+item_2/id = 2
+item_3/text = "Export..."
+item_3/id = 3
+
+[node name="Edit" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+auto_translate_mode = 1
+title = "Edit"
+position = Vector2i(590, 310)
+
+[node name="Tools" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+auto_translate_mode = 1
+title = "Tools"
+position = Vector2i(590, 310)
+
+[node name="Help" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+auto_translate_mode = 1
+title = "Help"
+position = Vector2i(590, 310)
+system_menu_id = 4
+item_count = 2
+item_0/text = "Documentation"
+item_1/id = 1
+
+[node name="Patterns" type="Panel" parent="Background/Margin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_v6upr")
+metadata/_tab_index = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Background/Margin/VBoxContainer/Patterns"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PreviewContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Preview
+"
+horizontal_alignment = 1
+
+[node name="Settings" type="BoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
+layout_mode = 2
+text = "Speed"
+
+[node name="HSlider" type="HSlider" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+min_value = 0.5
+max_value = 2.0
+step = 0.5
+value = 1.0
+
+[node name="Multiplier" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "1x"
+script = ExtResource("2_ql472")
+
+[node name="ResetCheck" type="CheckButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 2
+text = "Reset on edit"
+
+[node name="PatternPreview" type="SubViewportContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_v6upr")
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(619, 600)
+render_target_update_mode = 4
+
+[node name="preview_2d" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_prv64")]
+position = Vector2(12, 104)
+
+[node name="SettingsContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 3
+
+[node name="SplitContainer" type="SplitContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer"]
+layout_mode = 2
+
+[node name="Properties" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Properties"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(83, 0)
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "Default"
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "Bullet Type"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+max_value = 60.0
+step = 0.1
+value = 1.0
+allow_greater = true
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Lifetime
+"
+
+[node name="HSeparator2" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "X Offset"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Y Offset"
+
+[node name="HSeparator" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(83, 0)
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Static"
+popup/item_1/text = "To Target"
+popup/item_1/id = 1
+popup/item_2/text = "To Self"
+popup/item_2/id = 2
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Targeting"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+min_value = -360.0
+max_value = 360.0
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Angle Offset"
+
+[node name="Layers" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Layers"
+horizontal_alignment = 1
+
+[node name="PatternList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+max_text_lines = 2
+auto_height = true
+
+[node name="NewPattern" type="Button" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers/VBoxContainer"]
+layout_mode = 2
+text = "Create new"
+
+[connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]
