@@ -278,26 +278,56 @@ max_value = 360.0
 layout_mode = 2
 text = "Angle Offset"
 
-[node name="Layers" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers"]
+[node name="Layers" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers/VBoxContainer"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"SectionLabel"
 text = "Layers"
 horizontal_alignment = 1
 
-[node name="PatternList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers/VBoxContainer"]
+[node name="PatternList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 max_text_lines = 2
 auto_height = true
 
-[node name="NewPattern" type="Button" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Layers/VBoxContainer"]
+[node name="NewPattern" type="Button" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 10
+text = "Create new"
+
+[node name="Presets" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.57
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Presets"
+horizontal_alignment = 1
+
+[node name="PatternList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+max_text_lines = 2
+auto_height = true
+
+[node name="NewPattern" type="Button" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
 text = "Create new"
 
 [connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]
