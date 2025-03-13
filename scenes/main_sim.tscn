@@ -1,18 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bghlqrpfeq3o1"]
+[gd_scene load_steps=5 format=3 uid="uid://bghlqrpfeq3o1"]
 
-[sub_resource type="Gradient" id="Gradient_yqlm4"]
-offsets = PackedFloat32Array(0, 0.214286, 0.25974, 0.324675)
-colors = PackedColorArray(1, 0.415686, 0.407843, 0, 1, 0.415686, 0.407843, 0.454902, 1, 1, 1, 0.954545, 0, 0, 0, 0)
+[ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="1_sy1lp"]
+[ext_resource type="PackedScene" uid="uid://dhw114pvicv4e" path="res://prefabs/bullet.tscn" id="2_28ws0"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lbypn"]
-gradient = SubResource("Gradient_yqlm4")
-fill = 1
+[sub_resource type="Gradient" id="Gradient_pqur3"]
+offsets = PackedFloat32Array(0, 0.149351, 0.24026)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qdlju"]
+gradient = SubResource("Gradient_pqur3")
+fill = 2
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
 
 [node name="MainSim" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="BulletSpawner" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_lbypn")
+texture = SubResource("GradientTexture2D_qdlju")
+script = ExtResource("1_sy1lp")
+bullet_prefab = ExtResource("2_28ws0")

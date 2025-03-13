@@ -117,7 +117,7 @@ stretch = true
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(2, 2)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="preview_2d" parent="Background/Margin/TabContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_4hx61")]
 position = Vector2(12, 104)
