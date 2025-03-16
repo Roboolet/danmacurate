@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bghlqrpfeq3o1"]
 
-[ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="1_sy1lp"]
-[ext_resource type="PackedScene" uid="uid://dhw114pvicv4e" path="res://prefabs/bullet.tscn" id="2_28ws0"]
+[ext_resource type="Script" path="res://simulation/bullet_spawner.gd" id="1_sy1lp"]
+[ext_resource type="PackedScene" uid="uid://dhw114pvicv4e" path="res://simulation/bullet.tscn" id="2_28ws0"]
 
 [sub_resource type="Gradient" id="Gradient_pqur3"]
 offsets = PackedFloat32Array(0, 0.149351, 0.24026)

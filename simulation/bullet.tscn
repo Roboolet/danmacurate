@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhw114pvicv4e"]
 
-[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_dnrn5"]
+[ext_resource type="Script" path="res://simulation/bullet.gd" id="1_21tup"]
 
 [sub_resource type="Gradient" id="Gradient_0ogma"]
 offsets = PackedFloat32Array(0, 0.480519, 0.571429, 0.668831, 0.694805)
@@ -13,7 +13,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
 [node name="Bullet" type="Node2D"]
-script = ExtResource("1_dnrn5")
+script = ExtResource("1_21tup")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)

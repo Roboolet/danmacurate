@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://fghqduklbvvu"]
 
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_wvulw"]
-[ext_resource type="Script" path="res://scripts/export_location_selector.gd" id="2_ubwq5"]
+[ext_resource type="Script" path="res://file_management/export_location_selector.gd" id="2_ubwq5"]
 
 [node name="Export Window" type="Window"]
 auto_translate_mode = 1

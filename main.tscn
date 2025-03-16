@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bui6em53w2wx2"]
 
-[ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_v6upr"]
-[ext_resource type="Script" path="res://scripts/slider_value_label.gd" id="2_ql472"]
-[ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://scenes/main_sim.tscn" id="3_w7uqp"]
-[ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://scenes/export_window.tscn" id="4_fosoe"]
+[ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
+[ext_resource type="Script" path="res://slider_value_label.gd" id="2_uqojo"]
+[ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
+[ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://file_management/export_window.tscn" id="4_3cqwt"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_v6upr")
+theme = ExtResource("1_pq8nq")
 theme_type_variation = &"BackgroundPanel"
 
 [node name="Margin" type="MarginContainer" parent="Background"]
@@ -30,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_v6upr")
+theme = ExtResource("1_pq8nq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin"]
 layout_mode = 2
@@ -78,7 +78,7 @@ item_1/id = 1
 [node name="Patterns" type="Panel" parent="Background/Margin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_v6upr")
+theme = ExtResource("1_pq8nq")
 metadata/_tab_index = 1
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Background/Margin/VBoxContainer/Patterns"]
@@ -133,7 +133,7 @@ value = 1.0
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "1x"
-script = ExtResource("2_ql472")
+script = ExtResource("2_uqojo")
 
 [node name="ResetCheck" type="CheckButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
 layout_mode = 2
@@ -142,7 +142,7 @@ text = "Reset on edit"
 [node name="PatternPreview" type="SubViewportContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_v6upr")
+theme = ExtResource("1_pq8nq")
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview"]
@@ -151,7 +151,7 @@ handle_input_locally = false
 size = Vector2i(619, 632)
 render_target_update_mode = 4
 
-[node name="MainSim" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_w7uqp")]
+[node name="MainSim" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_ypu1y")]
 
 [node name="SettingsContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -305,7 +305,7 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Create new"
 
-[node name="Export Window" parent="." instance=ExtResource("4_fosoe")]
+[node name="Export Window" parent="." instance=ExtResource("4_3cqwt")]
 
 [node name="FileDialog" type="FileDialog" parent="."]
 
