@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://fghqduklbvvu"]
+
+[ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_wvulw"]
+[ext_resource type="Script" path="res://scripts/export_location_selector.gd" id="2_ubwq5"]
+
+[node name="Export Window" type="Window"]
+auto_translate_mode = 1
+title = "Export..."
+initial_position = 4
+size = Vector2i(600, 400)
+
+[node name="Export" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="Export"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wvulw")
+theme_type_variation = &"BackgroundPanel"
+
+[node name="Margin" type="MarginContainer" parent="Export/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wvulw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Export/Background/Margin"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Export/Background/Margin/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_ubwq5")
+
+[node name="Label" type="Label" parent="Export/Background/Margin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Output file:"
+
+[node name="FileField" type="LineEdit" parent="Export/Background/Margin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Export/Background/Margin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "Browse"
+
+[node name="FileDialog" type="FileDialog" parent="Export/Background/Margin/VBoxContainer/HBoxContainer/Button"]
+auto_translate_mode = 1
+title = "Select file location..."
+initial_position = 4
+size = Vector2i(663, 581)
+access = 2
+use_native_dialog = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Export/Background/Margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Export/Background/Margin/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Frames per second:"
+autowrap_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Export/Background/Margin/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+min_value = 1.0
+max_value = 66.0
+value = 24.0
+rounded = true
+allow_greater = true

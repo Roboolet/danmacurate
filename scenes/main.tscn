@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=5 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_v6upr"]
 [ext_resource type="Script" path="res://scripts/slider_value_label.gd" id="2_ql472"]
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://scenes/main_sim.tscn" id="3_w7uqp"]
+[ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://scenes/export_window.tscn" id="4_fosoe"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -44,6 +45,7 @@ flat = true
 [node name="File" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
 title = "File"
 position = Vector2i(590, 310)
+size = Vector2i(100, 116)
 system_menu_id = 2
 item_count = 4
 item_0/text = "New"
@@ -302,5 +304,9 @@ auto_height = true
 layout_mode = 2
 size_flags_vertical = 10
 text = "Create new"
+
+[node name="Export Window" parent="." instance=ExtResource("4_fosoe")]
+
+[node name="FileDialog" type="FileDialog" parent="."]
 
 [connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]

@@ -10,7 +10,7 @@ var velocity_polar:Vector2
 func initialize(properties:LayerProperties):
 	props = properties
 	is_initialized = true
-	
+						
 	# set initial values
 	position.x = props.offset.x
 	position.y = props.offset.y
@@ -20,5 +20,5 @@ func initialize(properties:LayerProperties):
 
 func _process(delta: float) -> void:
 	# apply velocity
-	position.x += velocity.x
-	position.y += velocity.y
+	position.x += velocity.x * delta
+	position.y += velocity.y * delta
