@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=6 format=3 uid="uid://bui6em53w2wx2"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
 [ext_resource type="Script" path="res://slider_value_label.gd" id="2_uqojo"]
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ek3w4")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -307,6 +309,9 @@ text = "Create new"
 
 [node name="Export Window" parent="." instance=ExtResource("4_3cqwt")]
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="SaveDialog" type="FileDialog" parent="."]
+size = Vector2i(538, 400)
+access = 2
+use_native_dialog = true
 
 [connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]
