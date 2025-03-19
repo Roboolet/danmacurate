@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=8 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
-[ext_resource type="Script" path="res://slider_value_label.gd" id="2_uqojo"]
+[ext_resource type="Script" path="res://ui/slider_value_label.gd" id="2_uqojo"]
+[ext_resource type="Script" path="res://ui/toolbar_menu_file.gd" id="3_mod3n"]
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
 [ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://file_management/export_window.tscn" id="4_3cqwt"]
-[ext_resource type="Script" path="res://commands/property_control_range.gd" id="5_4yj6j"]
+[ext_resource type="Script" path="res://ui/property_control_range.gd" id="5_4yj6j"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -50,14 +51,17 @@ title = "File"
 position = Vector2i(590, 310)
 size = Vector2i(100, 116)
 system_menu_id = 2
-item_count = 4
+item_count = 5
 item_0/text = "New"
-item_1/text = "Save"
+item_1/text = "Open"
 item_1/id = 1
-item_2/text = "Save as..."
+item_2/text = "Save"
 item_2/id = 2
-item_3/text = "Export..."
+item_3/text = "Save as..."
 item_3/id = 3
+item_4/text = "Export..."
+item_4/id = 4
+script = ExtResource("3_mod3n")
 
 [node name="Edit" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
@@ -362,9 +366,5 @@ text = "Create new"
 [node name="Export Window" parent="." instance=ExtResource("4_3cqwt")]
 visible = false
 
-[node name="SaveDialog" type="FileDialog" parent="."]
-size = Vector2i(538, 400)
-access = 2
-use_native_dialog = true
-
+[connection signal="id_pressed" from="Background/Margin/VBoxContainer/MenuBar/File" to="Background/Margin/VBoxContainer/MenuBar/File" method="_on_id_pressed"]
 [connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]

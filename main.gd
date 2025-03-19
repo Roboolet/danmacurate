@@ -6,6 +6,8 @@ signal project_modified()
 var layers:Array[Layer]
 var selectedLayer:int
 var projectFilePath:String
+var project_name:String = "Untitled"
+var version:String
 
 # keep track of all commands so they can be undo'd
 var history:Array[Command]
@@ -13,7 +15,9 @@ var undo_index:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	projectFilePath = ProjectSettings.globalize_path("user://")
+	projectFilePath = ProjectSettings.globalize_path("user://")	
+	version = ProjectSettings.get_setting("application/config/version")
+	get_tree().root.title = project_name + " - Danmacurate " + version
 	layers.append(Layer.new())
 
 func new_command(cmd:Command):
@@ -42,7 +46,16 @@ func select_layer(id:int) -> void:
 	selectedLayer = id
 
 func save_project(open_dialog: bool) -> void:
-	pass
+	print("Saving project to " + projectFilePath + project_name + "...")
+	
+	var layers_to_save: Array[Dictionary]
+	for l in layers:
+		if !l.is_marked_deleted:
+			layers_to_save.append(l.property_data)
+	var file = DanmaFile.new(layers_to_save)
+	
+	var error = ResourceSaver.save(file, projectFilePath+project_name)
+	print("RETURN CODE: " + str(error) + " / " + error_string(error))
 
 func open_project() ->  void:
 	pass
