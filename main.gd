@@ -67,6 +67,7 @@ func save_project(open_dialog: bool) -> void:
 		if !l.is_marked_deleted:
 			layersToSave.append(l.property_data)
 	var file = DanmaFile.new(layersToSave)
+	print("Saving .danma file with "+ str(layersToSave.size()) + " layers")
 	
 	var error = ResourceSaver.save(file, finalPath)
 	print("RETURN CODE: " + str(error) + " " + error_string(error))
