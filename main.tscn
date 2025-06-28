@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://bui6em53w2wx2"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_ek3w4"]
+[ext_resource type="Script" uid="uid://yeyrcjp6h46t" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
-[ext_resource type="Script" path="res://ui/slider_value_label.gd" id="2_uqojo"]
-[ext_resource type="Script" path="res://ui/toolbar_menu_file.gd" id="3_mod3n"]
+[ext_resource type="Script" uid="uid://1liqmlpmlto8" path="res://ui/slider_value_label.gd" id="2_uqojo"]
+[ext_resource type="Script" uid="uid://yq14ebhkle16" path="res://ui/toolbar_menu_file.gd" id="3_mod3n"]
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
 [ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://file_management/export_window.tscn" id="4_3cqwt"]
-[ext_resource type="Script" path="res://ui/property_control_range.gd" id="5_4yj6j"]
+[ext_resource type="Script" uid="uid://bnrw0cknsyfm1" path="res://ui/property_control_range.gd" id="5_4yj6j"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -53,6 +53,7 @@ size = Vector2i(100, 116)
 system_menu_id = 2
 item_count = 5
 item_0/text = "New"
+item_0/id = 0
 item_1/text = "Open"
 item_1/id = 1
 item_2/text = "Save"
@@ -80,6 +81,7 @@ position = Vector2i(590, 310)
 system_menu_id = 4
 item_count = 2
 item_0/text = "Documentation"
+item_0/id = 0
 item_1/id = 1
 
 [node name="Patterns" type="Panel" parent="Background/Margin/VBoxContainer"]
@@ -155,7 +157,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(619, 632)
+size = Vector2i(619, 606)
 render_target_update_mode = 4
 
 [node name="MainSim" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_ypu1y")]
@@ -223,6 +225,7 @@ layout_mode = 2
 selected = 0
 item_count = 1
 popup/item_0/text = "Default"
+popup/item_0/id = 0
 
 [node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
