@@ -9,9 +9,9 @@ func _on_id_pressed(id: int) -> void:
 				pass
 		1: # open
 			if has_saved:
-				pass
+				main.open_project("/home/leavdc/.local/share/godot/app_userdata/Danmacurate/Untitled.danma")
 			else:
-				pass
+				main.open_project("/home/leavdc/.local/share/godot/app_userdata/Danmacurate/Untitled.danma")
 		2: # save
 			main.save_project(false)
 		3: # save as

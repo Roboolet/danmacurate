@@ -13,6 +13,8 @@ var timer:float
 
 func initialize(properties:Layer):
 	props = properties
+	if props == null:
+		return
 	is_initialized = true
 
 	# set initial values

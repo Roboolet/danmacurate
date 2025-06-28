@@ -53,6 +53,8 @@ func redo_command():
 		project_modified.emit()
 
 func get_current_layer() -> Layer:
+	if layers.size() == 0:
+		layers.append(Layer.new())
 	return layers[selectedLayer]
 
 func select_layer(id:int) -> void:
@@ -65,6 +67,7 @@ func save_project(open_dialog: bool) -> void:
 	var finalPath = projectFilePath + projectName + ".danma"
 	print("Saving project to " + finalPath + "...")
 	
+	# save the layers
 	var layersToSave: Array[Dictionary]
 	for l in layers:
 		if !l.is_marked_deleted:
@@ -72,12 +75,27 @@ func save_project(open_dialog: bool) -> void:
 	var file = DanmaFile.new(layersToSave)
 	print("Saving .danma file with "+ str(layersToSave.size()) + " layers")
 	
+	# save the file
 	var error = ResourceSaver.save(file, finalPath)
 	print("RETURN CODE: " + str(error) + " " + error_string(error))
 	project_saved.emit()
 
-func open_project() ->  void:
-	pass
+func open_project(path:String) ->  void:
+	# find and get file
+	if not DirAccess.dir_exists_absolute(projectFilePath):
+		push_error("No project file found at " + path)
+		return
+	var danma:DanmaFile = ResourceLoader.load(path)
+	
+	# apply file
+	new_project()
+	layers.clear()
+	for data in danma.layers:
+		var newLayer:Layer = Layer.new()
+		newLayer.property_data = data
+		layers.append(newLayer)
+	
+	project_modified.emit()
 
 func new_project() -> void:
 	# clear things
