@@ -23,7 +23,7 @@ func initialize(properties:Layer):
 
 func _process(delta: float) -> void:
 	timer += delta
-	if timer > props.get_value("lifetime", 0):
+	if timer > props.get_value("lifetime", 1):
 		queue_free()
 	
 	# apply velocity
