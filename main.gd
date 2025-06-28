@@ -2,11 +2,12 @@ extends Control
 class_name Main
 
 signal project_modified()
+signal project_saved()
 
 var layers:Array[Layer]
 var selectedLayer:int
 var projectFilePath:String
-var projectName:String = "Untitled"
+var projectName:String
 var version:String
 
 # keep track of all commands so they can be undo'd
@@ -18,13 +19,15 @@ func _ready() -> void:
 	projectFilePath = ProjectSettings.globalize_path("user://")	
 	version = ProjectSettings.get_setting("application/config/version")
 	get_tree().root.title = projectName + " - Danmacurate " + version
-	layers.append(Layer.new())
+	new_project()
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("undo"):
 		undo_command()
 	else: if event.is_action_pressed("redo"):
 		redo_command()
+	else: if event.is_action_pressed("save"):
+		save_project(false)
 
 func new_command(cmd:Command):
 	cmd.execute()
@@ -71,6 +74,20 @@ func save_project(open_dialog: bool) -> void:
 	
 	var error = ResourceSaver.save(file, finalPath)
 	print("RETURN CODE: " + str(error) + " " + error_string(error))
+	project_saved.emit()
 
 func open_project() ->  void:
 	pass
+
+func new_project() -> void:
+	# clear things
+	layers.clear()
+	history.clear()
+	undoIndex = 0
+	
+	# initialize
+	layers.append(Layer.new())
+	projectName = "Untitled"
+	selectedLayer = 0
+	
+	project_modified.emit()
