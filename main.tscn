@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=11 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Script" uid="uid://yeyrcjp6h46t" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
 [ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://file_management/export_window.tscn" id="4_3cqwt"]
 [ext_resource type="Script" uid="uid://bnrw0cknsyfm1" path="res://ui/property_control_range.gd" id="5_4yj6j"]
+[ext_resource type="Script" uid="uid://bd3dtwr7ucbt7" path="res://layer_type_option.gd" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://dxpgveluf0md2" path="res://ui/layer_list.gd" id="7_5vw27"]
 [ext_resource type="Script" uid="uid://d2bfn3s0mn3yr" path="res://ui/new_layer_button.gd" id="8_kek77"]
 
@@ -198,13 +199,77 @@ size_flags_horizontal = 3
 [node name="MarginContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+[node name="Properties" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="LayerType" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType" node_paths=PackedStringArray("mother_prop", "father_prop", "sim_props")]
+custom_minimum_size = Vector2(83, 0)
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Simulation"
+popup/item_0/id = 0
+popup/item_1/text = "Manual"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+popup/item_2/text = "Relative"
+popup/item_2/id = 2
+popup/item_3/text = "Volley"
+popup/item_3/id = 3
+script = ExtResource("6_4c57u")
+mother_prop = NodePath("../../Mother")
+father_prop = NodePath("../../Father")
+sim_props = NodePath("../../Simulation Properties")
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType"]
+layout_mode = 2
+text = "Layer Type"
+
+[node name="Mother" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Mother"]
+layout_mode = 2
+max_value = 999.0
+rounded = true
+allow_greater = true
+script = ExtResource("5_4yj6j")
+variable_name = "mother"
+value_default = 1.0
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Mother"]
+layout_mode = 2
+text = "First Parent Layer"
+
+[node name="Father" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Father"]
+layout_mode = 2
+max_value = 999.0
+rounded = true
+allow_greater = true
+script = ExtResource("5_4yj6j")
+variable_name = "father"
+value_default = 1.0
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Father"]
+layout_mode = 2
+text = "Second Parent Layer"
+
+[node name="HSeparator4" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+layout_mode = 2
+
+[node name="Simulation Properties" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+layout_mode = 2
+
+[node name="BPS" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/BPS"]
 layout_mode = 2
 max_value = 60.0
 step = 0.1
@@ -214,14 +279,14 @@ script = ExtResource("5_4yj6j")
 variable_name = "bullets_per_second"
 value_default = 1.0
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/BPS"]
 layout_mode = 2
 text = "Bullets per second"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Lifetime" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Lifetime"]
 layout_mode = 2
 max_value = 60.0
 step = 0.1
@@ -231,30 +296,14 @@ script = ExtResource("5_4yj6j")
 variable_name = "lifetime"
 value_default = 1.0
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Lifetime"]
 layout_mode = 2
 text = "Lifetime"
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-visible = false
+[node name="Scale" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-custom_minimum_size = Vector2(83, 0)
-layout_mode = 2
-selected = 0
-item_count = 1
-popup/item_0/text = "Default"
-popup/item_0/id = 0
-
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-text = "Bullet Type"
-
-[node name="HBoxContainer11" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
@@ -263,7 +312,7 @@ script = ExtResource("5_4yj6j")
 variable_name = "scale_x"
 value_default = 1.0
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
@@ -272,132 +321,132 @@ script = ExtResource("5_4yj6j")
 variable_name = "scale_y"
 value_default = 1.0
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Scale"
 
-[node name="HSeparator3" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 text = "Planar Movement"
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Planar_Initial" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_initial_x"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_initial_y"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Initial"
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Planar_Accel" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_accel_x"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_accel_y"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Acceleration"
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Planar_Jerk" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_jerk_x"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_jerk_y"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Jerk"
 
-[node name="HBoxContainer9" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Planar_cossin" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_cos"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_sin"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cos/Sin Amplitude"
 
-[node name="HBoxContainer10" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Planar_cossin_speed" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_cos_speed"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_sin_speed"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cos/Sin Speed"
 
-[node name="HSeparator2" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 text = "Polar Movement"
 

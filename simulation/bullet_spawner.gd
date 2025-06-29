@@ -25,7 +25,8 @@ func _process(delta: float) -> void:
 	
 	for i in main.layers.size():
 		var layer = main.layers[i]
-		if bullet_timers[i] > 1/layer.get_value("bullets_per_second", 1):
+		var bps:float = layer.get_value("bullets_per_second", 1)
+		if bullet_timers[i] > 1/bps:
 			bullet_timers[i] = 0
 			
 			# ghosted color
