@@ -28,9 +28,14 @@ func _process(delta: float) -> void:
 	if timer > props.get_value("lifetime", 1):
 		queue_free()
 	
-	# apply velocity
-	position.x += velocity.x * delta
-	position.y += velocity.y * delta
+	# planar movement
+	var sin = sin(timer * props.get_value("velocity_planar_sin_speed", 0)) 
+	sin *= props.get_value("velocity_planar_sin", 0)
+	var cos = cos(timer * props.get_value("velocity_planar_cos_speed", 0)) 
+	cos *= props.get_value("velocity_planar_cos", 0)
+	
+	position.x += (velocity.x + cos) * delta
+	position.y += (velocity.y + sin) * delta
 	velocity += accel * delta
 	accel.x += props.get_value("velocity_planar_jerk_x", 0) * delta
 	accel.y += props.get_value("velocity_planar_jerk_y", 0) * delta

@@ -216,8 +216,7 @@ value_default = 1.0
 
 [node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-text = "Bullets per second
-"
+text = "Bullets per second"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -234,8 +233,7 @@ value_default = 1.0
 
 [node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Lifetime
-"
+text = "Lifetime"
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 visible = false
@@ -254,12 +252,11 @@ layout_mode = 2
 text = "Bullet Type"
 
 [node name="HSeparator3" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Planar Velocity"
+text = "Planar Movement"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -327,8 +324,56 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Jerk"
 
+[node name="HBoxContainer9" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_planar_cos"
+
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_planar_sin"
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cos/Sin Amplitude"
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_planar_cos_speed"
+
+[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_planar_sin_speed"
+
+[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cos/Sin Speed"
+
 [node name="HSeparator2" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label2" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Polar Movement"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
 layout_mode = 2
