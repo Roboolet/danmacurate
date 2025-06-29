@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
 [ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://file_management/export_window.tscn" id="4_3cqwt"]
 [ext_resource type="Script" uid="uid://bnrw0cknsyfm1" path="res://ui/property_control_range.gd" id="5_4yj6j"]
-[ext_resource type="Script" uid="uid://bd3dtwr7ucbt7" path="res://layer_type_option.gd" id="6_4c57u"]
+[ext_resource type="Script" uid="uid://bd3dtwr7ucbt7" path="res://ui/layer_type_option.gd" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://dxpgveluf0md2" path="res://ui/layer_list.gd" id="7_5vw27"]
 [ext_resource type="Script" uid="uid://c5d07l1xdhrnr" path="res://ui/property_control_layer.gd" id="7_efxa6"]
 [ext_resource type="Script" uid="uid://d2bfn3s0mn3yr" path="res://ui/new_layer_button.gd" id="8_kek77"]
@@ -52,7 +52,7 @@ size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 flat = true
 
-[node name="File" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar" node_paths=PackedStringArray("open_dialog", "save_dialog")]
+[node name="File" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar" node_paths=PackedStringArray("open_dialog", "save_dialog", "export_window")]
 title = "File"
 position = Vector2i(590, 310)
 size = Vector2i(100, 116)
@@ -71,6 +71,7 @@ item_4/id = 4
 script = ExtResource("3_mod3n")
 open_dialog = NodePath("../../../../../OpenDialog")
 save_dialog = NodePath("../../../../../SaveAsDialog")
+export_window = NodePath("../../../../../Export Window")
 
 [node name="Edit" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
@@ -519,6 +520,7 @@ text = "Create new"
 
 [node name="Export Window" parent="." instance=ExtResource("4_3cqwt")]
 visible = false
+unresizable = true
 
 [node name="OpenDialog" type="FileDialog" parent="."]
 title = "Open a File"

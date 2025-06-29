@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://fghqduklbvvu"]
+[gd_scene load_steps=4 format=3 uid="uid://fghqduklbvvu"]
 
+[ext_resource type="Script" uid="uid://bcgkwheo6mwgu" path="res://file_management/export_window.gd" id="1_jvoh6"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_wvulw"]
 [ext_resource type="Script" uid="uid://b7cum51fudhhp" path="res://file_management/export_location_selector.gd" id="2_ubwq5"]
 
@@ -8,6 +9,10 @@ auto_translate_mode = 1
 title = "Export..."
 initial_position = 4
 size = Vector2i(600, 400)
+transient = true
+exclusive = true
+always_on_top = true
+script = ExtResource("1_jvoh6")
 
 [node name="Export" type="Control" parent="."]
 layout_mode = 3
