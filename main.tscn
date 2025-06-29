@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=13 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Script" uid="uid://yeyrcjp6h46t" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dxpgveluf0md2" path="res://ui/layer_list.gd" id="7_5vw27"]
 [ext_resource type="Script" uid="uid://c5d07l1xdhrnr" path="res://ui/property_control_layer.gd" id="7_efxa6"]
 [ext_resource type="Script" uid="uid://d2bfn3s0mn3yr" path="res://ui/new_layer_button.gd" id="8_kek77"]
+[ext_resource type="Script" uid="uid://cg8cgarenr48s" path="res://project_open_dialog.gd" id="12_dg77c"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -50,7 +51,7 @@ size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 flat = true
 
-[node name="File" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+[node name="File" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar" node_paths=PackedStringArray("open_dialog")]
 title = "File"
 position = Vector2i(590, 310)
 size = Vector2i(100, 116)
@@ -67,6 +68,7 @@ item_3/id = 3
 item_4/text = "Export..."
 item_4/id = 4
 script = ExtResource("3_mod3n")
+open_dialog = NodePath("../../../../../OpenDialog")
 
 [node name="Edit" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
@@ -515,6 +517,15 @@ text = "Create new"
 
 [node name="Export Window" parent="." instance=ExtResource("4_3cqwt")]
 visible = false
+
+[node name="OpenDialog" type="FileDialog" parent="."]
+title = "Open Project"
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.danma")
+use_native_dialog = true
+script = ExtResource("12_dg77c")
 
 [connection signal="id_pressed" from="Background/Margin/VBoxContainer/MenuBar/File" to="Background/Margin/VBoxContainer/MenuBar/File" method="_on_id_pressed"]
 [connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]

@@ -108,7 +108,8 @@ func open_project(path:String) ->  void:
 		var newLayer:Layer = Layer.new()
 		newLayer.property_data = data
 		# solves weird conversion shenanigans
-		newLayer.property_data["layer_type"] = int(newLayer.property_data["layer_type"])
+		if newLayer.property_data.has("layer_type"):
+			newLayer.property_data["layer_type"] = int(newLayer.property_data["layer_type"])
 		layers.append(newLayer)
 	
 	selectedLayer = 0
