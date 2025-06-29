@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=10 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Script" uid="uid://yeyrcjp6h46t" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
 [ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://file_management/export_window.tscn" id="4_3cqwt"]
 [ext_resource type="Script" uid="uid://bnrw0cknsyfm1" path="res://ui/property_control_range.gd" id="5_4yj6j"]
+[ext_resource type="Script" uid="uid://dxpgveluf0md2" path="res://ui/layer_list.gd" id="7_5vw27"]
+[ext_resource type="Script" uid="uid://d2bfn3s0mn3yr" path="res://ui/new_layer_button.gd" id="8_kek77"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -326,18 +328,31 @@ theme_type_variation = &"SectionLabel"
 text = "Layers"
 horizontal_alignment = 1
 
-[node name="PatternList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 layout_mode = 2
-max_text_lines = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.15
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+allow_search = false
 auto_height = true
+item_count = 1
+item_0/text = "Layer 1"
+script = ExtResource("7_5vw27")
 
 [node name="NewPattern" type="Button" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-text = "Create new"
+text = "New layer"
+script = ExtResource("8_kek77")
 
 [node name="Presets" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.57

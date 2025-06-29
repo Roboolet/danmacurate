@@ -14,6 +14,9 @@ var version:String
 var history:Array[Command]
 var undoIndex:int
 
+static func get_instance(node:Node) -> Main:
+	return node.get_tree().root.get_child(0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	projectFilePath = ProjectSettings.globalize_path("user://")	
@@ -59,6 +62,14 @@ func get_current_layer() -> Layer:
 
 func select_layer(id:int) -> void:
 	selectedLayer = id
+
+func add_layer(layer:Layer) -> void:
+	layers.append(layer)
+	project_modified.emit()
+
+func remove_layer(id:int) -> void:
+	layers[id].is_marked_deleted = true
+	project_modified.emit()
 
 func save_project(open_dialog: bool) -> void:
 	# make directory if it does not exist

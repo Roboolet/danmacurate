@@ -6,11 +6,13 @@ func _on_id_pressed(id: int) -> void:
 			if has_saved:
 				main.new_project()
 			else:
-				pass
+				#TODO: Add warning
+				main.new_project()
 		1: # open
 			if has_saved:
 				main.open_project("/home/leavdc/.local/share/godot/app_userdata/Danmacurate/Untitled.danma")
 			else:
+				#TODO: Add warning
 				main.open_project("/home/leavdc/.local/share/godot/app_userdata/Danmacurate/Untitled.danma")
 		2: # save
 			main.save_project(false)
