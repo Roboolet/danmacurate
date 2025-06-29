@@ -11,7 +11,7 @@ func on_project_modified() -> void:
 	for i in main.layers.size():
 		var layer:Layer = main.layers[i]
 		if not layer.is_marked_deleted:
-			add_item("Layer "+ str(i))
+			add_item("Layer %s [%s]" % [i, Layer.LayerType.keys()[layer.layer_type]])
 	select(main.selectedLayer)
 
 func on_select(id:int):

@@ -46,15 +46,15 @@ func get_value(variable:String, default_value):
 			else:
 				dad_prop = default_value
 			
-			return (mom_prop + dad_prop) * 0.5
+			return (safe_add(mom_prop, dad_prop, 0.5))
 	push_error("Unrecognized layer type: "+str(layer_type))
 
 func get_value_raw(variable:String, default_value):
 	return property_data.get(variable, default_value)
 
-func safe_add(a, b):
+func safe_add(a, b, mult = 1):
 	if typeof(a) in [TYPE_INT, TYPE_FLOAT] and typeof(b) in [TYPE_INT, TYPE_FLOAT]:
-		return a + b
+		return (a + b) * mult
 	elif typeof(a) == TYPE_STRING or typeof(b) == TYPE_STRING:
 		return str(a) + str(b)
 	else:

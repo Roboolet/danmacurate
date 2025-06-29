@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func on_item_selected(id:int):
 	apply_layer_type(id)
+	main.project_modified.emit()
 
 func on_project_modified() -> void:
 	apply_layer_type(main.get_current_layer().layer_type)
