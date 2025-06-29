@@ -7,7 +7,7 @@ signal project_saved()
 var layers:Array[Layer]
 var selectedLayer:int
 var projectFilePath:String
-var projectName:String = "Untitled"
+var projectName:String = "Untitled.danma"
 var version:String
 
 # keep track of all commands so they can be undo'd
@@ -83,10 +83,12 @@ func save_project(path:String ="") -> void:
 		DirAccess.make_dir_absolute(projectFilePath);
 	var finalPath
 	if path == "":
-		finalPath = projectFilePath + projectName + ".danma"
+		# automatic file path, mostly for Ctrl+S
+		finalPath = projectFilePath + projectName
 	else:
 		finalPath = path
 		projectName = path.get_file()
+		projectFilePath = path.get_base_dir()+"/"
 		reload_window_title()
 	print("Saving project to " + finalPath + "...")
 	
@@ -109,8 +111,6 @@ func open_project(path:String) ->  void:
 		push_error("No project file found at " + path)
 		return
 	var danma:DanmaFile = ResourceLoader.load(path)
-	projectName = path.get_file()
-	reload_window_title()
 	
 	# apply file
 	new_project()
@@ -123,6 +123,9 @@ func open_project(path:String) ->  void:
 			newLayer.property_data["layer_type"] = int(newLayer.property_data["layer_type"])
 		layers.append(newLayer)
 	
+	projectName = path.get_file()
+	projectFilePath = path.get_base_dir() +"/"
+	reload_window_title()	
 	selectedLayer = 0
 	project_modified.emit()
 
@@ -134,7 +137,7 @@ func new_project() -> void:
 	
 	# initialize
 	layers.append(Layer.new())
-	projectName = "Untitled"
+	projectName = "Untitled.danma"
 	selectedLayer = 0
 	
 	project_modified.emit()
