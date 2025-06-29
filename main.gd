@@ -14,8 +14,10 @@ var version:String
 var history:Array[Command]
 var undoIndex:int
 
-static func get_instance(node:Node) -> Main:
-	return node.get_tree().root.get_child(0)
+static var instance:Main
+
+func _init() -> void:
+	instance = self
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

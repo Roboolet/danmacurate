@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bnrw0cknsyfm1" path="res://ui/property_control_range.gd" id="5_4yj6j"]
 [ext_resource type="Script" uid="uid://bd3dtwr7ucbt7" path="res://layer_type_option.gd" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://dxpgveluf0md2" path="res://ui/layer_list.gd" id="7_5vw27"]
-[ext_resource type="Script" uid="uid://ccbqohximbqpn" path="res://ui/property_control_layer.gd" id="7_efxa6"]
+[ext_resource type="Script" uid="uid://c5d07l1xdhrnr" path="res://ui/property_control_layer.gd" id="7_efxa6"]
 [ext_resource type="Script" uid="uid://d2bfn3s0mn3yr" path="res://ui/new_layer_button.gd" id="8_kek77"]
 
 [node name="Main" type="Control"]

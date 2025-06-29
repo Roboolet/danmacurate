@@ -2,7 +2,6 @@ extends RefCounted
 class_name Layer
 enum LayerType {SIMULATION, MANUAL, RELATIVE, VOLLEY}
 
-var layer_type:LayerType
 # used in-editor to make undoing deletion possible
 var is_marked_deleted: bool
 # the dictionary with all the actual data
@@ -13,7 +12,7 @@ func set_value(variable:String, new_value):
 	print("Layer [number]: Set "+variable+ " to " +str(new_value))
 
 func get_value(variable:String, default_value):
-	match layer_type:
+	match get_value_raw("layer_type", 0):
 		LayerType.SIMULATION:
 			return property_data.get(variable, default_value)
 		
@@ -24,7 +23,7 @@ func get_value(variable:String, default_value):
 		LayerType.RELATIVE:
 			var self_prop = property_data.get(variable, default_value)
 			
-			var mother:Layer = property_data.get("mother")
+			var mother:Layer = Main.instance.layers[property_data.get("mother", 0)]
 			if mother and mother != self:
 				var mom_prop = mother.property_data.get(variable, default_value)
 				return safe_add(self_prop, mom_prop)
@@ -32,8 +31,8 @@ func get_value(variable:String, default_value):
 				return self_prop
 		
 		LayerType.VOLLEY:
-			var mother:Layer = property_data.get("mother")
-			var father:Layer = property_data.get("father")
+			var mother:Layer = Main.instance.layers[property_data.get("mother", 0)]
+			var father:Layer = Main.instance.layers[property_data.get("father", 0)]
 			
 			var mom_prop
 			var dad_prop
@@ -47,7 +46,6 @@ func get_value(variable:String, default_value):
 				dad_prop = default_value
 			
 			return (safe_add(mom_prop, dad_prop, 0.5))
-	push_error("Unrecognized layer type: "+str(layer_type))
 
 func get_value_raw(variable:String, default_value):
 	return property_data.get(variable, default_value)
