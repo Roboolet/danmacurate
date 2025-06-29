@@ -62,6 +62,7 @@ func get_current_layer() -> Layer:
 
 func select_layer(id:int) -> void:
 	selectedLayer = id
+	project_modified.emit()
 
 func add_layer(layer:Layer) -> void:
 	layers.append(layer)

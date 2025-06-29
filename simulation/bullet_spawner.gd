@@ -2,9 +2,9 @@ extends Sprite2D
 class_name BulletSpawner
 
 @export var bullet_prefab:PackedScene
-@export var bullets_per_second:float = 2
+@export var ghosting_alpha:float = 0.3
 var main:Main
-var bullet_timer:float
+var bullet_timers:Array[float]
 #var reset_timer:float
 
 # Called when the node enters the scene tree for the first time.
@@ -19,10 +19,21 @@ func on_project_modified() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("reset_simulation"):
 		reset_sim()
-	bullet_timer += delta
-	if bullet_timer > 1/bullets_per_second:
-		bullet_timer = 0
-		spawn_bullet(main.get_current_layer())
+	
+	for i in bullet_timers.size():
+		bullet_timers[i] += delta
+	
+	for i in main.layers.size():
+		var layer = main.layers[i]
+		if bullet_timers[i] > 1/layer.get_value("bullets_per_second", 1):
+			bullet_timers[i] = 0
+			
+			# ghosted color
+			var col = Color.from_rgba8(255,255,255,100)
+			# selected color
+			if i == main.selectedLayer:
+				col = Color.AQUAMARINE
+			spawn_bullet(layer, col)
 	
 	#reset_timer += delta
 	# TODO: change this so it uses the longest lifetime of all layers rather than
@@ -33,7 +44,9 @@ func _process(delta: float) -> void:
 
 func reset_sim() -> void:
 	clear_bullets()
-	spawn_bullet(main.get_current_layer())
+	bullet_timers.clear()
+	for i in main.layers.size():
+		bullet_timers.append(9999999)
 	#reset_timer = 0
 
 func clear_bullets() -> void:
@@ -42,8 +55,9 @@ func clear_bullets() -> void:
 	for child in get_children():
 		child.queue_free()
 
-func spawn_bullet(props: Layer) -> void:
+func spawn_bullet(props: Layer, color:Color) -> void:
 	var bullet:Node2D = bullet_prefab.instantiate()
 	bullet.initialize(props)
+	bullet.modulate = color
 	add_child(bullet)
 	pass
