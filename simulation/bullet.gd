@@ -27,6 +27,8 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer > props.get_value("lifetime", 1):
 		queue_free()
+		
+	var scale := Vector2(props.get_value("scale_x", 1), props.get_value("scale_y", 1))	
 	
 	# planar movement
 	var sin = sin(timer * props.get_value("velocity_planar_sin_speed", 0)) 
@@ -34,8 +36,8 @@ func _process(delta: float) -> void:
 	var cos = cos(timer * props.get_value("velocity_planar_cos_speed", 0)) 
 	cos *= props.get_value("velocity_planar_cos", 0)
 	
-	position.x += (velocity.x + cos) * delta
-	position.y += (velocity.y + sin) * delta
-	velocity += accel * delta
-	accel.x += props.get_value("velocity_planar_jerk_x", 0) * delta
-	accel.y += props.get_value("velocity_planar_jerk_y", 0) * delta
+	position.x += (velocity.x + cos) * scale.x * delta
+	position.y += (velocity.y + sin) * scale.y * delta
+	velocity += accel * scale * delta
+	accel.x += props.get_value("velocity_planar_jerk_x", 0) * scale.x * delta
+	accel.y += props.get_value("velocity_planar_jerk_y", 0) * scale.y * delta
