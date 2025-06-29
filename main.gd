@@ -107,8 +107,11 @@ func open_project(path:String) ->  void:
 	for data in danma.layers:
 		var newLayer:Layer = Layer.new()
 		newLayer.property_data = data
+		# solves weird conversion shenanigans
+		newLayer.property_data["layer_type"] = int(newLayer.property_data["layer_type"])
 		layers.append(newLayer)
 	
+	selectedLayer = 0
 	project_modified.emit()
 
 func new_project() -> void:

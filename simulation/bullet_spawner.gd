@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		var bps = layer.get_value("bullets_per_second", 1)
 		# for some reason this is null sometimes??
 		if not bps:
-			return
+			continue
 		
 		if bullet_timers[i] > 1/bps:
 			bullet_timers[i] = 0
