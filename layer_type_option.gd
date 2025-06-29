@@ -4,16 +4,22 @@ extends OptionButton
 @export var father_prop:Control
 @export var sim_props:Control
 
+var main:Main
 func _ready() -> void:
 	item_selected.connect(on_item_selected)
+	main = Main.get_instance(self)
+	main.project_modified.connect(on_project_modified)
 	apply_layer_type(0)
 
 func on_item_selected(id:int):
 	apply_layer_type(id)
-	
+
+func on_project_modified() -> void:
+	apply_layer_type(main.get_current_layer().layer_type)
 
 func apply_layer_type(type:int):
-	var layer = Main.get_instance(self).get_current_layer()
+	var layer = main.get_current_layer()
+	selected = type
 	match type:
 		0: # Simulation
 			layer.layer_type = Layer.LayerType.SIMULATION

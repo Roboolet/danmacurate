@@ -27,7 +27,7 @@ func get_value(variable:String, default_value):
 			var mother:Layer = property_data.get("mother")
 			if mother and mother != self:
 				var mom_prop = mother.property_data.get(variable, default_value)
-				return self_prop + mom_prop
+				return safe_add(self_prop, mom_prop)
 			else:
 				return self_prop
 		
@@ -48,3 +48,15 @@ func get_value(variable:String, default_value):
 			
 			return (mom_prop + dad_prop) * 0.5
 	push_error("Unrecognized layer type: "+str(layer_type))
+
+func get_value_raw(variable:String, default_value):
+	return property_data.get(variable, default_value)
+
+func safe_add(a, b):
+	if typeof(a) in [TYPE_INT, TYPE_FLOAT] and typeof(b) in [TYPE_INT, TYPE_FLOAT]:
+		return a + b
+	elif typeof(a) == TYPE_STRING or typeof(b) == TYPE_STRING:
+		return str(a) + str(b)
+	else:
+		push_warning("Cannot add values of types %s and %s" % [typeof(a), typeof(b)])
+		return null
