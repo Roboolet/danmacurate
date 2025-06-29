@@ -7,7 +7,7 @@ signal project_saved()
 var layers:Array[Layer]
 var selectedLayer:int
 var projectFilePath:String
-var projectName:String
+var projectName:String = "Untitled"
 var version:String
 
 # keep track of all commands so they can be undo'd
@@ -23,16 +23,19 @@ func _init() -> void:
 func _ready() -> void:
 	projectFilePath = ProjectSettings.globalize_path("user://")	
 	version = ProjectSettings.get_setting("application/config/version")
-	get_tree().root.title = projectName + " - Danmacurate " + version
+	reload_window_title()
 	new_project()
-	
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("undo"):
 		undo_command()
 	else: if event.is_action_pressed("redo"):
 		redo_command()
 	else: if event.is_action_pressed("save"):
-		save_project(false)
+		save_project()
+
+func reload_window_title():	
+	get_tree().root.title = projectName + " - Danmacurate " + version
 
 func new_command(cmd:Command):
 	cmd.execute()
@@ -74,11 +77,17 @@ func remove_layer(id:int) -> void:
 	layers[id].is_marked_deleted = true
 	project_modified.emit()
 
-func save_project(open_dialog: bool) -> void:
+func save_project(path:String ="") -> void:
 	# make directory if it does not exist
 	if not DirAccess.dir_exists_absolute(projectFilePath):
 		DirAccess.make_dir_absolute(projectFilePath);
-	var finalPath = projectFilePath + projectName + ".danma"
+	var finalPath
+	if path == "":
+		finalPath = projectFilePath + projectName + ".danma"
+	else:
+		finalPath = path
+		projectName = path.get_file()
+		reload_window_title()
 	print("Saving project to " + finalPath + "...")
 	
 	# save the layers
@@ -100,6 +109,8 @@ func open_project(path:String) ->  void:
 		push_error("No project file found at " + path)
 		return
 	var danma:DanmaFile = ResourceLoader.load(path)
+	projectName = path.get_file()
+	reload_window_title()
 	
 	# apply file
 	new_project()

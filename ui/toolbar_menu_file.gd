@@ -1,6 +1,7 @@
 extends ToolbarMenu
 
 @export var open_dialog:FileDialog
+@export var save_dialog:FileDialog
 
 func _on_id_pressed(id: int) -> void:
 	match id:
@@ -17,8 +18,8 @@ func _on_id_pressed(id: int) -> void:
 				#TODO: Add warning
 				open_dialog.visible = true
 		2: # save
-			main.save_project(false)
+			save_dialog.visible = true
 		3: # save as
-			main.save_project(true)
+			save_dialog.visible = true
 		4: # export
 			pass
