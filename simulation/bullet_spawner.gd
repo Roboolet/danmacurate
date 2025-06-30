@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 	for i in main.layers.size():
 		var layer = main.layers[i]
 		var bps = layer.get_value_raw("bullets_per_second", 1)
+		bps = max(bps, 0.001)
 		
 		if bullet_timers[i] > 1/bps:
 			bullet_timers[i] = 0

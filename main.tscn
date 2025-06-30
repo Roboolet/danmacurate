@@ -68,6 +68,7 @@ item_3/text = "Save as..."
 item_3/id = 3
 item_4/text = "Export..."
 item_4/id = 4
+item_4/disabled = true
 script = ExtResource("3_mod3n")
 open_dialog = NodePath("../../../../../OpenDialog")
 save_dialog = NodePath("../../../../../SaveAsDialog")

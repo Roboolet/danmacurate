@@ -25,7 +25,7 @@ func get_value(variable:String, default_value, volley_mult = 0.5):
 			
 			var mother:Layer = Main.instance.layers[property_data.get("mother", 0)]
 			if mother and mother != self:
-				var mom_prop = mother.property_data.get(variable, default_value)
+				var mom_prop = mother.get_value(variable, default_value)
 				return safe_add(self_prop, mom_prop)
 			else:
 				return self_prop
@@ -37,11 +37,11 @@ func get_value(variable:String, default_value, volley_mult = 0.5):
 			var mom_prop
 			var dad_prop
 			if mother and mother != self:
-				mom_prop = mother.property_data.get(variable, default_value)
+				mom_prop = mother.get_value(variable, default_value)
 			else:
 				mom_prop = default_value
 			if father and father != self:
-				dad_prop = father.property_data.get(variable, default_value)
+				dad_prop = father.get_value(variable, default_value)
 			else:
 				dad_prop = default_value
 			
