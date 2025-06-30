@@ -16,16 +16,18 @@
 [ext_resource type="Script" uid="uid://cg8cgarenr48s" path="res://ui/project_open_dialog.gd" id="12_dg77c"]
 [ext_resource type="Script" uid="uid://dmkpcry2ff2ij" path="res://ui/save_as_dialog.gd" id="13_ycdy4"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Node"]
+script = ExtResource("1_ek3w4")
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ek3w4")
 
-[node name="Background" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +37,7 @@ grow_vertical = 2
 theme = ExtResource("1_pq8nq")
 theme_type_variation = &"BackgroundPanel"
 
-[node name="Margin" type="MarginContainer" parent="Background"]
+[node name="Margin" type="MarginContainer" parent="Control/Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,17 +46,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pq8nq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Margin"]
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="Background/Margin/VBoxContainer"]
+[node name="MenuBar" type="MenuBar" parent="Control/Background/Margin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 flat = true
 
-[node name="File" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar" node_paths=PackedStringArray("open_dialog", "save_dialog", "export_window")]
+[node name="File" type="PopupMenu" parent="Control/Background/Margin/VBoxContainer/MenuBar" node_paths=PackedStringArray("open_dialog", "save_dialog", "export_window")]
 title = "File"
 position = Vector2i(590, 310)
 size = Vector2i(100, 116)
@@ -70,13 +72,12 @@ item_3/text = "Save as..."
 item_3/id = 3
 item_4/text = "Export..."
 item_4/id = 4
-item_4/disabled = true
 script = ExtResource("3_mod3n")
-open_dialog = NodePath("../../../../../OpenDialog")
-save_dialog = NodePath("../../../../../SaveAsDialog")
-export_window = NodePath("../../../../../Export Window")
+open_dialog = NodePath("../../../../../../OpenDialog")
+save_dialog = NodePath("../../../../../../SaveAsDialog")
+export_window = NodePath("../../../../../../Export Window")
 
-[node name="Edit" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+[node name="Edit" type="PopupMenu" parent="Control/Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
 title = "Edit"
 position = Vector2i(590, 310)
@@ -87,7 +88,7 @@ item_1/text = "Redo"
 item_1/id = 1
 script = ExtResource("4_w48qg")
 
-[node name="Tools" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+[node name="Tools" type="PopupMenu" parent="Control/Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
 title = "Tools"
 position = Vector2i(590, 310)
@@ -99,7 +100,7 @@ item_1/text = "Console"
 item_1/id = 1
 item_1/disabled = true
 
-[node name="Help" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
+[node name="Help" type="PopupMenu" parent="Control/Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
 title = "Help"
 position = Vector2i(590, 310)
@@ -112,13 +113,13 @@ item_1/id = 1
 item_1/disabled = true
 script = ExtResource("5_vivmo")
 
-[node name="Patterns" type="Panel" parent="Background/Margin/VBoxContainer"]
+[node name="Patterns" type="Panel" parent="Control/Background/Margin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_pq8nq")
 metadata/_tab_index = 1
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Background/Margin/VBoxContainer/Patterns"]
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/Background/Margin/VBoxContainer/Patterns"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,37 +127,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PreviewContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
+[node name="PreviewContainer" type="MarginContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"SectionLabel"
 text = "Preview
 "
 horizontal_alignment = 1
 
-[node name="Settings" type="BoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
+[node name="Settings" type="BoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
 layout_mode = 2
 text = "Speed"
 
-[node name="HSlider" type="HSlider" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -166,71 +167,71 @@ max_value = 2.0
 step = 0.5
 value = 1.0
 
-[node name="Multiplier" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
+[node name="Multiplier" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "1x"
 script = ExtResource("2_uqojo")
 
-[node name="ResetCheck" type="CheckButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
+[node name="ResetCheck" type="CheckButton" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings"]
 layout_mode = 2
 text = "Reset on edit"
 
-[node name="PatternPreview" type="SubViewportContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
+[node name="PatternPreview" type="SubViewportContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_pq8nq")
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview"]
+[node name="SubViewport" type="SubViewport" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview"]
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(619, 606)
 render_target_update_mode = 4
 
-[node name="MainSim" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_ypu1y")]
+[node name="MainSim" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/PatternPreview/SubViewport" instance=ExtResource("3_ypu1y")]
 
-[node name="SettingsContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
+[node name="SettingsContainer" type="MarginContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 3
 
-[node name="SplitContainer" type="SplitContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer"]
+[node name="SplitContainer" type="SplitContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer"]
 layout_mode = 2
 
-[node name="Properties" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
+[node name="Properties" type="PanelContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"SectionLabel"
 text = "Layer Properties"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Properties" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+[node name="Properties" type="VBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="LayerType" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+[node name="LayerType" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType" node_paths=PackedStringArray("mother_prop", "father_prop", "sim_props")]
+[node name="OptionButton" type="OptionButton" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType" node_paths=PackedStringArray("mother_prop", "father_prop", "sim_props")]
 custom_minimum_size = Vector2(83, 0)
 layout_mode = 2
 selected = 0
@@ -250,42 +251,42 @@ mother_prop = NodePath("../../Mother")
 father_prop = NodePath("../../Father")
 sim_props = NodePath("../../Simulation Properties")
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType"]
 layout_mode = 2
 text = "Layer Type"
 
-[node name="Mother" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+[node name="Mother" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Mother"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Mother"]
 layout_mode = 2
 max_value = 1.0
 rounded = true
 script = ExtResource("7_efxa6")
 variable_name = "mother"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Mother"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Mother"]
 layout_mode = 2
 text = "First Parent Layer"
 
-[node name="Father" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+[node name="Father" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Father"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Father"]
 layout_mode = 2
 max_value = 1.0
 rounded = true
 script = ExtResource("7_efxa6")
 variable_name = "father"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Father"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Father"]
 layout_mode = 2
 text = "Second Parent Layer"
 
-[node name="Iterations" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+[node name="Iterations" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Iterations"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Iterations"]
 layout_mode = 2
 min_value = 1.0
 max_value = 99.0
@@ -295,14 +296,14 @@ script = ExtResource("5_4yj6j")
 variable_name = "volley_iterations"
 value_default = 1.0
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Iterations"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Iterations"]
 layout_mode = 2
 text = "Volley Iterations"
 
-[node name="BPS" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+[node name="BPS" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/BPS"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/BPS"]
 layout_mode = 2
 max_value = 60.0
 step = 0.1
@@ -312,20 +313,20 @@ script = ExtResource("5_4yj6j")
 variable_name = "bullets_per_second"
 value_default = 1.0
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/BPS"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/BPS"]
 layout_mode = 2
 text = "Bullets per second"
 
-[node name="HSeparator4" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+[node name="HSeparator4" type="HSeparator" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="Simulation Properties" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+[node name="Simulation Properties" type="VBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="Lifetime" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Lifetime" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Lifetime"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Lifetime"]
 layout_mode = 2
 max_value = 60.0
 step = 0.1
@@ -335,14 +336,14 @@ script = ExtResource("5_4yj6j")
 variable_name = "lifetime"
 value_default = 1.0
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Lifetime"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Lifetime"]
 layout_mode = 2
 text = "Lifetime"
 
-[node name="Scale" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Scale" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
@@ -351,7 +352,7 @@ script = ExtResource("5_4yj6j")
 variable_name = "scale_x"
 value_default = 1.0
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
@@ -360,161 +361,161 @@ script = ExtResource("5_4yj6j")
 variable_name = "scale_y"
 value_default = 1.0
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Scale"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Scale"
 
-[node name="HSeparator3" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="HSeparator3" type="HSeparator" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 text = "Planar Movement"
 
-[node name="Planar_Initial" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Planar_Initial" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_initial_x"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_initial_y"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Initial"
 
-[node name="Planar_Accel" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Planar_Accel" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_accel_x"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_accel_y"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Accel"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Acceleration"
 
-[node name="Planar_Jerk" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Planar_Jerk" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_jerk_x"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_jerk_y"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Jerk"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Jerk"
 
-[node name="Planar_cossin" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Planar_cossin" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_cos"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_sin"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cos/Sin Amplitude"
 
-[node name="Planar_cossin_speed" type="HBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Planar_cossin_speed" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_cos_speed"
 
-[node name="SpinBox2" type="SpinBox" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
 layout_mode = 2
 min_value = -99999.0
 max_value = 99999.0
 script = ExtResource("5_4yj6j")
 variable_name = "velocity_planar_sin_speed"
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_cossin_speed"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cos/Sin Speed"
 
-[node name="HSeparator2" type="HSeparator" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="HSeparator2" type="HSeparator" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+[node name="Label2" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 text = "Polar Movement"
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
 layout_mode = 2
 
-[node name="Layers" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer"]
+[node name="Layers" type="PanelContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"SectionLabel"
 text = "Layers"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.15
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ItemList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="ItemList" type="ItemList" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 allow_search = false
 auto_height = true
@@ -522,34 +523,34 @@ item_count = 1
 item_0/text = "Layer 1"
 script = ExtResource("7_5vw27")
 
-[node name="NewPattern" type="Button" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
+[node name="NewPattern" type="Button" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Layers/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 text = "New layer"
 script = ExtResource("8_kek77")
 
-[node name="Presets" type="PanelContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer"]
+[node name="Presets" type="PanelContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.57
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"SectionLabel"
 text = "Presets"
 horizontal_alignment = 1
 
-[node name="PatternList" type="ItemList" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
+[node name="PatternList" type="ItemList" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 max_text_lines = 2
 auto_height = true
 
-[node name="NewPattern" type="Button" parent="Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
+[node name="NewPattern" type="Button" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/VSplitContainer/Presets/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 text = "Create new"
@@ -575,4 +576,4 @@ filters = PackedStringArray("*.danma")
 use_native_dialog = true
 script = ExtResource("13_ycdy4")
 
-[connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]
+[connection signal="value_changed" from="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]

@@ -1,4 +1,4 @@
-extends Control
+extends Node
 class_name Main
 
 signal project_modified()
