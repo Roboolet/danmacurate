@@ -9,6 +9,7 @@ func _ready() -> void:
 	main = get_tree().root.get_child(0)
 	main.project_saved.connect(on_project_saved)
 	main.project_modified.connect(on_project_modified)
+	id_pressed.connect(on_select)
 
 func on_project_saved() -> void:
 	has_saved_recently = true
@@ -16,3 +17,6 @@ func on_project_saved() -> void:
 
 func on_project_modified() -> void:
 	has_saved_recently = false
+
+func on_select(id:int) -> void:
+	pass

@@ -4,7 +4,7 @@ extends ToolbarMenu
 @export var save_dialog:FileDialog
 @export var export_window:Window
 
-func _on_id_pressed(id: int) -> void:
+func on_select(id: int) -> void:
 	match id:
 		0: # new
 			if has_saved_recently:

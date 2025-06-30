@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=16 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Script" uid="uid://yeyrcjp6h46t" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://yq14ebhkle16" path="res://ui/toolbar_menu_file.gd" id="3_mod3n"]
 [ext_resource type="PackedScene" uid="uid://bghlqrpfeq3o1" path="res://simulation/main_sim.tscn" id="3_ypu1y"]
 [ext_resource type="PackedScene" uid="uid://fghqduklbvvu" path="res://file_management/export_window.tscn" id="4_3cqwt"]
+[ext_resource type="Script" uid="uid://dobqvp1lpya1q" path="res://ui/toolbar_menu_edit.gd" id="4_w48qg"]
 [ext_resource type="Script" uid="uid://bnrw0cknsyfm1" path="res://ui/property_control_range.gd" id="5_4yj6j"]
+[ext_resource type="Script" uid="uid://dedr62tixgpq8" path="res://ui/toolbar_menu_help.gd" id="5_vivmo"]
 [ext_resource type="Script" uid="uid://bd3dtwr7ucbt7" path="res://ui/layer_type_option.gd" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://dxpgveluf0md2" path="res://ui/layer_list.gd" id="7_5vw27"]
 [ext_resource type="Script" uid="uid://c5d07l1xdhrnr" path="res://ui/property_control_layer.gd" id="7_efxa6"]
@@ -60,7 +62,7 @@ system_menu_id = 2
 item_count = 5
 item_0/text = "New"
 item_0/id = 0
-item_1/text = "Open"
+item_1/text = "Open..."
 item_1/id = 1
 item_2/text = "Save"
 item_2/id = 2
@@ -78,11 +80,24 @@ export_window = NodePath("../../../../../Export Window")
 auto_translate_mode = 1
 title = "Edit"
 position = Vector2i(590, 310)
+item_count = 2
+item_0/text = "Undo"
+item_0/id = 0
+item_1/text = "Redo"
+item_1/id = 1
+script = ExtResource("4_w48qg")
 
 [node name="Tools" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
 title = "Tools"
 position = Vector2i(590, 310)
+item_count = 2
+item_0/text = "Preferences"
+item_0/id = 0
+item_0/disabled = true
+item_1/text = "Console"
+item_1/id = 1
+item_1/disabled = true
 
 [node name="Help" type="PopupMenu" parent="Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
@@ -92,7 +107,10 @@ system_menu_id = 4
 item_count = 2
 item_0/text = "Documentation"
 item_0/id = 0
+item_1/text = "Examples"
 item_1/id = 1
+item_1/disabled = true
+script = ExtResource("5_vivmo")
 
 [node name="Patterns" type="Panel" parent="Background/Margin/VBoxContainer"]
 layout_mode = 2
@@ -557,5 +575,4 @@ filters = PackedStringArray("*.danma")
 use_native_dialog = true
 script = ExtResource("13_ycdy4")
 
-[connection signal="id_pressed" from="Background/Margin/VBoxContainer/MenuBar/File" to="Background/Margin/VBoxContainer/MenuBar/File" method="_on_id_pressed"]
 [connection signal="value_changed" from="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/HSlider" to="Background/Margin/VBoxContainer/Patterns/HSplitContainer/PreviewContainer/PanelContainer/VBoxContainer/Settings/HBoxContainer/Multiplier" method="_on_slider_value_changed"]
