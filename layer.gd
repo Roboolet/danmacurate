@@ -11,7 +11,7 @@ func set_value(variable:String, new_value):
 	property_data[variable] = new_value
 	print("Layer [number]: Set "+variable+ " to " +str(new_value))
 
-func get_value(variable:String, default_value):
+func get_value(variable:String, default_value, volley_mult = 0.5):
 	match get_value_raw("layer_type", 0):
 		LayerType.SIMULATION:
 			return property_data.get(variable, default_value)
@@ -45,7 +45,7 @@ func get_value(variable:String, default_value):
 			else:
 				dad_prop = default_value
 			
-			return (safe_add(mom_prop, dad_prop, 0.5))
+			return (safe_add(mom_prop * volley_mult, dad_prop * (1-volley_mult), ))
 
 func get_value_raw(variable:String, default_value):
 	return property_data.get(variable, default_value)

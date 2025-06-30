@@ -25,20 +25,21 @@ func _process(delta: float) -> void:
 	
 	for i in main.layers.size():
 		var layer = main.layers[i]
-		var bps = layer.get_value("bullets_per_second", 1)
-		# for some reason this is null sometimes??
-		if not bps:
-			continue
+		var bps = layer.get_value_raw("bullets_per_second", 1)
 		
 		if bullet_timers[i] > 1/bps:
 			bullet_timers[i] = 0
-			
 			# ghosted color
 			var col = Color.from_rgba8(255,255,255,100)
 			# selected color
 			if i == main.selectedLayer:
 				col = Color.AQUAMARINE
-			spawn_bullet(layer, col)
+			
+			if not layer.get_value_raw("layer_type", 0) == Layer.LayerType.VOLLEY:
+				spawn_bullet(layer, col)
+			else:
+				for vol in layer.get_value_raw("volley_iterations", 1) as int:
+					spawn_bullet(layer, col, 1+vol)
 	
 	#reset_timer += delta
 	# TODO: change this so it uses the longest lifetime of all layers rather than
@@ -60,9 +61,9 @@ func clear_bullets() -> void:
 	for child in get_children():
 		child.queue_free()
 
-func spawn_bullet(props: Layer, color:Color) -> void:
+func spawn_bullet(props: Layer, color:Color, volley_iteration:int = 1) -> void:
 	var bullet:Node2D = bullet_prefab.instantiate()
-	bullet.initialize(props)
+	bullet.initialize(props, volley_iteration)
 	bullet.modulate = color
 	add_child(bullet)
 	pass
