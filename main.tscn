@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bui6em53w2wx2"]
+[gd_scene load_steps=18 format=3 uid="uid://bui6em53w2wx2"]
 
 [ext_resource type="Script" uid="uid://yeyrcjp6h46t" path="res://main.gd" id="1_ek3w4"]
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_pq8nq"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://d2bfn3s0mn3yr" path="res://ui/new_layer_button.gd" id="8_kek77"]
 [ext_resource type="Script" uid="uid://cg8cgarenr48s" path="res://ui/project_open_dialog.gd" id="12_dg77c"]
 [ext_resource type="Script" uid="uid://dmkpcry2ff2ij" path="res://ui/save_as_dialog.gd" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://co4aoopq8y8vq" path="res://documentation.tscn" id="14_2cqfq"]
+[ext_resource type="Script" uid="uid://cbw5vv0wflaek" path="res://documentation_window.gd" id="15_yaehf"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ek3w4")
@@ -72,10 +74,11 @@ item_3/text = "Save as..."
 item_3/id = 3
 item_4/text = "Export..."
 item_4/id = 4
+item_4/disabled = true
 script = ExtResource("3_mod3n")
 open_dialog = NodePath("../../../../../../OpenDialog")
 save_dialog = NodePath("../../../../../../SaveAsDialog")
-export_window = NodePath("../../../../../../Export Window")
+export_window = NodePath("../../../../../../Export")
 
 [node name="Edit" type="PopupMenu" parent="Control/Background/Margin/VBoxContainer/MenuBar"]
 auto_translate_mode = 1
@@ -100,7 +103,7 @@ item_1/text = "Console"
 item_1/id = 1
 item_1/disabled = true
 
-[node name="Help" type="PopupMenu" parent="Control/Background/Margin/VBoxContainer/MenuBar"]
+[node name="Help" type="PopupMenu" parent="Control/Background/Margin/VBoxContainer/MenuBar" node_paths=PackedStringArray("doc_window")]
 auto_translate_mode = 1
 title = "Help"
 position = Vector2i(590, 310)
@@ -112,6 +115,7 @@ item_1/text = "Examples"
 item_1/id = 1
 item_1/disabled = true
 script = ExtResource("5_vivmo")
+doc_window = NodePath("../../../../../../Documentation")
 
 [node name="Patterns" type="Panel" parent="Control/Background/Margin/VBoxContainer"]
 layout_mode = 2
@@ -555,9 +559,13 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Create new"
 
-[node name="Export Window" parent="." instance=ExtResource("4_3cqwt")]
+[node name="Export" parent="." instance=ExtResource("4_3cqwt")]
 visible = false
 unresizable = true
+
+[node name="Documentation" parent="." instance=ExtResource("14_2cqfq")]
+visible = false
+script = ExtResource("15_yaehf")
 
 [node name="OpenDialog" type="FileDialog" parent="."]
 title = "Open a File"

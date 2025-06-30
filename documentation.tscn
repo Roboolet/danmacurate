@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://co4aoopq8y8vq"]
+
+[ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_tescy"]
+
+[node name="Documentation" type="Window"]
+auto_translate_mode = 1
+position = Vector2i(0, 36)
+size = Vector2i(905, 410)
+transient = true
+
+[node name="Export" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="Export"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tescy")
+theme_type_variation = &"BackgroundPanel"
+
+[node name="Margin" type="MarginContainer" parent="Export/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tescy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Export/Background/Margin"]
+layout_mode = 2
+
+[node name="Entries" type="ItemList" parent="Export/Background/Margin/HBoxContainer"]
+layout_mode = 2
+auto_width = true
+item_count = 1
+item_0/text = "Getting Started"

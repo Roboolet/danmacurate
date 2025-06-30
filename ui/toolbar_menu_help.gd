@@ -1,8 +1,11 @@
 extends ToolbarMenu
 
+@export var doc_window:Window
+@export var examples_window:Window
+
 func on_select(id: int) -> void:
 	match id:
 		0: # documentation
-			Main.instance.undo_command()
+			doc_window.show()
 		1: # examples
-			Main.instance.redo_command()
+			examples_window.show()
