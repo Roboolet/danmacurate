@@ -8,6 +8,7 @@ var layers:Array[Layer]
 var selectedLayer:int
 var projectFilePath:String
 var projectName:String = "Untitled.danma"
+var projectVersion:int = 0
 var version:String
 
 # keep track of all commands so they can be undo'd
@@ -98,6 +99,8 @@ func save_project(path:String ="") -> void:
 		if !l.is_marked_deleted:
 			layersToSave.append(l.property_data)
 	var file = DanmaFile.new(layersToSave)
+	projectVersion += 1
+	file.fileVersion = projectVersion
 	print("Saving .danma file with "+ str(layersToSave.size()) + " layers")
 	
 	# save the file
@@ -111,6 +114,7 @@ func open_project(path:String) ->  void:
 		push_error("No project file found at " + path)
 		return
 	var danma:DanmaFile = ResourceLoader.load(path)
+	projectVersion = danma.fileVersion
 	
 	# apply file
 	new_project()
