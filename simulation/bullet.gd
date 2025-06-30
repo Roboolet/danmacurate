@@ -23,10 +23,19 @@ func initialize(properties:Layer, volley_iteration:int = 1):
 	vol_mul = vol_frac * (volley_iteration as float)
 
 	# set initial values
+	position.x += props.get_value("velocity_planar_offset_x", 0, vol_mul)
+	position.y += props.get_value("velocity_planar_offset_y", 0, vol_mul)
 	velocity.x = props.get_value("velocity_planar_initial_x", 0, vol_mul)
 	velocity.y = props.get_value("velocity_planar_initial_y", 0, vol_mul)
 	accel.x = props.get_value("velocity_planar_accel_x", 0, vol_mul)
 	accel.y = props.get_value("velocity_planar_accel_y", 0, vol_mul)
+	
+	var poloff = Vector2(props.get_value("velocity_polar_offset_x", 0, vol_mul), props.get_value("velocity_polar_offset_y", 0, vol_mul))
+	position += get_cart(poloff)
+	velocity_polar.x = props.get_value("velocity_polar_initial_x", 0, vol_mul)
+	velocity_polar.y = props.get_value("velocity_polar_initial_y", 0, vol_mul)
+	accel_polar.x = props.get_value("velocity_polar_accel_x", 0, vol_mul)
+	accel_polar.y = props.get_value("velocity_polar_accel_y", 0, vol_mul)
 
 func _process(delta: float) -> void:
 	timer += delta
@@ -46,3 +55,19 @@ func _process(delta: float) -> void:
 	velocity += accel * scale * delta
 	accel.x += props.get_value("velocity_planar_jerk_x", 0, vol_mul) * scale.x * delta
 	accel.y += props.get_value("velocity_planar_jerk_y", 0, vol_mul) * scale.y * delta
+	
+	# polar movement
+	var sin_polar = sin(timer * props.get_value("velocity_polar_sin_speed", 0, vol_mul)) 
+	sin_polar *= props.get_value("velocity_polar_sin", 0, vol_mul)
+	var cos_polar = cos(timer * props.get_value("velocity_polar_cos_speed", 0, vol_mul)) 
+	cos_polar *= props.get_value("velocity_polar_cos", 0, vol_mul)
+	
+	var velpol = Vector2((velocity_polar.x + cos_polar) * scale.x * delta, (velocity_polar.y + sin_polar + position.y) * scale.y * delta)
+	position += get_cart(velpol)
+	velocity_polar += get_cart(accel_polar * scale * delta)
+	accel_polar.x += props.get_value("velocity_polar_jerk_x", 0, vol_mul) * scale.x * delta
+	accel_polar.y += props.get_value("velocity_polar_jerk_y", 0, vol_mul) * scale.y * delta
+
+# convert from polar to cartesian/planar
+func get_cart(vec:Vector2) -> Vector2:
+	return Vector2(vec.x * cos(vec.y), vec.x * sin(vec.y))

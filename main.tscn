@@ -381,6 +381,28 @@ layout_mode = 2
 layout_mode = 2
 text = "Planar Movement"
 
+[node name="Planar_offset" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_offset"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_planar_offset_x"
+
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_offset"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_planar_offset_y"
+
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_offset"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Offset"
+
 [node name="Planar_Initial" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 
@@ -401,7 +423,7 @@ variable_name = "velocity_planar_initial_y"
 [node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Planar_Initial"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Initial"
+text = "Initial Velocity"
 
 [node name="Planar_Accel" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
@@ -497,6 +519,149 @@ layout_mode = 2
 [node name="Label2" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
 layout_mode = 2
 text = "Polar Movement"
+
+[node name="Polar_offset" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_offset"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_offset_x"
+
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_offset"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+step = 0.01
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_offset_y"
+
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_offset"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Offset"
+
+[node name="Polar_initial" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+visible = false
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_initial"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_initial_x"
+
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_initial"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+step = 0.01
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_initial_y"
+
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_initial"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Initial Velocity"
+
+[node name="Polar_Accel" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+visible = false
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_Accel"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_accel_x"
+
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_Accel"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+step = 0.01
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_accel_y"
+
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_Accel"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Acceleration"
+
+[node name="Polar_Jerk" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+visible = false
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_Jerk"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_jerk_x"
+
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_Jerk"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+step = 0.01
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_jerk_y"
+
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_Jerk"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jerk"
+
+[node name="Polar_cossin" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+visible = false
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_cossin"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_cos"
+
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_cossin"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+step = 0.01
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_sin"
+
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_cossin"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cos/Sin Amplitude"
+
+[node name="Polar_cossin_speed" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties"]
+visible = false
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_cossin_speed"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_cos_speed"
+
+[node name="SpinBox2" type="SpinBox" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_cossin_speed"]
+layout_mode = 2
+min_value = -99999.0
+max_value = 99999.0
+step = 0.01
+script = ExtResource("5_4yj6j")
+variable_name = "velocity_polar_sin_speed"
+
+[node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Simulation Properties/Polar_cossin_speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cos/Sin Speed"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer"]
 layout_mode = 2
