@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://co4aoopq8y8vq"]
+[gd_scene load_steps=3 format=3 uid="uid://co4aoopq8y8vq"]
 
 [ext_resource type="Theme" uid="uid://c60bwmpavdiif" path="res://theme/corundum/theme_corundum.tres" id="1_tescy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tescy"]
+font_size = 24
 
 [node name="Documentation" type="Window"]
 auto_translate_mode = 1
 position = Vector2i(0, 36)
-size = Vector2i(905, 410)
+size = Vector2i(905, 915)
 transient = true
 
 [node name="Export" type="Control" parent="."]
@@ -41,5 +44,93 @@ layout_mode = 2
 [node name="Entries" type="ItemList" parent="Export/Background/Margin/HBoxContainer"]
 layout_mode = 2
 auto_width = true
-item_count = 1
+item_count = 11
 item_0/text = "Getting Started"
+item_1/text = "Preview Window"
+item_2/text = "Layers"
+item_3/text = "Layer Types"
+item_4/text = "File Formats"
+item_5/text = "PROPERTIES"
+item_5/selectable = false
+item_5/disabled = true
+item_6/text = "Lifetime"
+item_7/text = "Scale"
+item_8/text = "Planar/Polar"
+item_9/text = "Velocity/Accel/Jerk"
+item_10/text = "Cos/Sin"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Export/Background/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Export/Background/Margin/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_tescy")
+
+[node name="MarginContainer" type="MarginContainer" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Getting Started" type="RichTextLabel" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "Hi! Welcome to Danmacurate!
+This is an engine-agnostic tool to create bullet patterns for bullet hell games (e.g. Touhou Project, Enter the Gungeon, Undertale). Or you can just use it to make some pretty looking shapes.
+
+If you're new, I encourage you to go and mess around a bit, change some numbers around. You likely won't need half the pages in this documentation!
+
+If you're looking for some more direction, here's a challenge for you:
+Try making an expanding triangle shape using 3 SIMULATION layers and 3 VOLLEY layers"
+
+[node name="Preview Window" type="RichTextLabel" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "The preview window shows a live demonstration of your finished pattern. The bullets from your currently selected layer are highlighted, while those of other layers appear transparent.
+
+An important thing to note: left-to-right is considered the \"forward\" direction. So if you would make a pattern you want to shoot straight at something in-game, make sure it goes to the right."
+
+[node name="Layers" type="RichTextLabel" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "Each layer in a bullet pattern is effectively a list of properties that tell the simulator how a single bullet acts (except for volley layers, which is effectively multiple layers in one). 
+
+Layers can be selected using the layer list to the right side of the screen. The properties window in the middle will then be updated for that selected layer. 
+
+New layers can be created with the button on the bottom of the layers list."
+
+[node name="Layer Types" type="RichTextLabel" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "Each layer is one of 4 layer types:
+ - SIMULATION
+ - MANUAL (currently unimplemented)
+ - RELATIVE
+ - VOLLEY
+
+SIMULATION layers are a single bullet path that is created using a set of properties fed into a physics simulation
+
+MANUAL layers are a single bullet path that is hand-drawn by the user with keyframes
+
+RELATIVE layers are the same as SIMULATION layers, except they inherit the settings from another layer. Specifically, they add the values of both layers together
+
+VOLLEY layers are a collection of multiple layers generated inbetween two existing layers. Each iteration of a volley fires a bullet with all values interpolated between both the parents, based on it's iteration."
+
+[node name="File Formats" type="RichTextLabel" parent="Export/Background/Margin/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Danmacurate supports two custom file formats:
+ - .danma
+ - .darbs
+
+.danma files are the project files of danmacurate. They store the data of each layer, as well as the project and tool version.
+While it is possible to use these files directly in your game, it does mean you will have to recreate the physics of this program yourself.
+
+.darbs (DAnmacurate Readonly Bullet Sequence) files are essentially a \"baked\" version of the bullet pattern. Instead of storing each layer's settings, it outputs a list of every point in the path. This means that all you need to do to recreate the path in another program/engine is to read out and play-back the bullet path."

@@ -2,6 +2,7 @@ extends OptionButton
 
 @export var mother_prop:Control
 @export var father_prop:Control
+@export var volley_prop:Control
 @export var sim_props:Control
 
 var main:Main
@@ -27,12 +28,14 @@ func apply_layer_type(type:int, emit:bool = false):
 				layer.set_value("layer_type", Layer.LayerType.SIMULATION)
 			mother_prop.visible = false
 			father_prop.visible = false
+			volley_prop.visible = false
 			sim_props.visible = true
 		1: # Manual
 			if emit:
 				layer.set_value("layer_type", Layer.LayerType.MANUAL)
 			mother_prop.visible = false
 			father_prop.visible = false
+			volley_prop.visible = false
 			sim_props.visible = false
 		2: # Relative
 			if emit:
@@ -44,6 +47,7 @@ func apply_layer_type(type:int, emit:bool = false):
 				layer.set_value("bullets_per_second", 0)
 			mother_prop.visible = true
 			father_prop.visible = false
+			volley_prop.visible = false
 			sim_props.visible = true
 			
 		3: # Volley
@@ -51,4 +55,5 @@ func apply_layer_type(type:int, emit:bool = false):
 				layer.set_value("layer_type", Layer.LayerType.VOLLEY)
 			mother_prop.visible = true
 			father_prop.visible = true
+			volley_prop.visible = true
 			sim_props.visible = false

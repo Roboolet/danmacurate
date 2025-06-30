@@ -235,7 +235,7 @@ layout_mode = 2
 [node name="LayerType" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType" node_paths=PackedStringArray("mother_prop", "father_prop", "sim_props")]
+[node name="OptionButton" type="OptionButton" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType" node_paths=PackedStringArray("mother_prop", "father_prop", "volley_prop", "sim_props")]
 custom_minimum_size = Vector2(83, 0)
 layout_mode = 2
 selected = 0
@@ -253,6 +253,7 @@ popup/item_3/id = 3
 script = ExtResource("6_4c57u")
 mother_prop = NodePath("../../Mother")
 father_prop = NodePath("../../Father")
+volley_prop = NodePath("../../Iterations")
 sim_props = NodePath("../../Simulation Properties")
 
 [node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/LayerType"]
@@ -303,6 +304,9 @@ value_default = 1.0
 [node name="Label" type="Label" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties/Iterations"]
 layout_mode = 2
 text = "Volley Iterations"
+
+[node name="HSeparator5" type="HSeparator" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
+layout_mode = 2
 
 [node name="BPS" type="HBoxContainer" parent="Control/Background/Margin/VBoxContainer/Patterns/HSplitContainer/SettingsContainer/SplitContainer/Properties/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/Properties"]
 layout_mode = 2
